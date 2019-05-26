@@ -9,10 +9,10 @@
 	<div id="app" class="container">
 		<div class="row mt-5">
 			<div class="col">
-				<input type="button" class="btn btn-success btn-block" value="ON LED" @click.prevent="onLed">
+				<input type="button" class="btn btn-success btn-block shadow" value="ON LED" @click.prevent="onLed">
 			</div>
 			<div class="col">
-				<input type="button" class="btn btn-danger btn-block" value="OFF LED" @click.prevent="offLed">
+				<input type="button" class="btn btn-danger btn-block shadow" value="OFF LED" @click.prevent="offLed">
 			</div>
 		</div>
 	</div>
@@ -24,21 +24,17 @@
 		el: "#app",
 		methods: {
 			onLed : async function(){
-				axios.post("../luzController.php", {
-					gpio: 17,
-					status: "on"
-				}).then(response => {
-					console.log(response);
+				axios.post("../luzController.php", "gpio=17&status=on")
+				.then(response => {
+					console.log(response.data);
 				}).catch(error => {
 					console.log(error);
 				});
 			},
 			offLed: async function(){
-				axios.post("../luzController.php", {
-					gpio: 17,
-					status: "off"
-				}).then(response => {
-					console.log(response);
+				axios.post("../luzController.php", "gpio=17&status=off")
+				.then(response => {
+					console.log(response.data);
 				}).catch(error => {
 					console.log(error);
 				});
